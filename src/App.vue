@@ -1,0 +1,43 @@
+<template>
+  <div>
+    <p>{{ msg }}</p>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'Ping-component',
+  data() {
+    return {
+      msg: '',
+    };
+  },
+  methods: {
+    getMessage() {
+      axios.get('/')
+          .then((res) => {
+            this.msg = res.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+    },
+  },
+  created() {
+    this.getMessage();
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
